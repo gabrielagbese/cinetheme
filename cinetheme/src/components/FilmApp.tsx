@@ -17,6 +17,10 @@ const FilmApp: React.FC = () => {
         setFilmId(e.target.value);
     };
 
+    const handleRemoveFilmId = (id: string) => {
+        setFilmIds(filmIds.filter((filmId) => filmId !== id));
+    };
+
     return (
         <div>
             <h1>Film ID Collector</h1>
@@ -31,7 +35,12 @@ const FilmApp: React.FC = () => {
                 <h2>Collected Film IDs:</h2>
                 <ul>
                     {filmIds.map((id, index) => (
-                        <li key={index}>{id}</li>
+                        <li key={index}>
+                            {id}
+                            <button onClick={() => handleRemoveFilmId(id)}>
+                                Remove
+                            </button>
+                        </li>
                     ))}
                 </ul>
             </div>
@@ -42,7 +51,7 @@ const FilmApp: React.FC = () => {
                 ))}
             </div>
             <div>
-                <h2>Common Recommendations:</h2>
+                <h2>All Recommendations:</h2>
                 <FilmComparison filmIds={filmIds} />
             </div>
         </div>
